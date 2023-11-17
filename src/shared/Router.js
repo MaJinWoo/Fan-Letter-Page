@@ -18,7 +18,6 @@ const Router = ()=>{
                 setNickname={setNickname} letterContent={letterContent} setLetterContent={setLetterContent}/>} />
                 <Route path="/detail/:id" element={<Detail letters = {letters} setLetters={setLetters} nickname={nickname}
                 setNickname={setNickname} letterContent={letterContent} setLetterContent={setLetterContent}/>}/>
-                <Route path="/detail/:id/edit"/>
             </Routes>
         </BrowserRouter>
     )
