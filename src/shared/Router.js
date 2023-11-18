@@ -3,7 +3,7 @@ import Home from "pages/Home"
 import Detail from "pages/Detail"
 import React, { useState } from 'react'
 import fakeData from '../shared/fakeData.json'
-
+import { Context } from "context/Context";
 
 const Router = ()=>{
 
@@ -14,10 +14,8 @@ const Router = ()=>{
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home letters = {letters} setLetters={setLetters} nickname={nickname}
-                setNickname={setNickname} letterContent={letterContent} setLetterContent={setLetterContent}/>} />
-                <Route path="/detail/:id" element={<Detail letters = {letters} setLetters={setLetters} nickname={nickname}
-                setNickname={setNickname} letterContent={letterContent} setLetterContent={setLetterContent}/>}/>
+                    <Route path="/" element={<Context.Provider value={{letters,nickname, letterContent}}><Home setLetters={setLetters} setNickname={setNickname} setLetterContent={setLetterContent}/></Context.Provider>} />
+                    <Route path="/detail/:id" element={<Context.Provider value={{letters, nickname, letterContent}}><Detail setLetters={setLetters} setNickname={setNickname} setLetterContent={setLetterContent}/></Context.Provider>}/>
             </Routes>
         </BrowserRouter>
     )

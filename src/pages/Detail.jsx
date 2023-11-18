@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components';
 import backgroundImg from "img/background-color2.jpg"
+import { useContext } from 'react';
+import { Context } from 'context/Context';
 
 const StGlobalDiv = styled.div`
   background-image: url(${backgroundImg});
@@ -90,19 +92,19 @@ const StDetailBtn = styled.button`
 `
 function Detail({letters, setLetters, nickname, setNickname, letterContent, setLetterContent}) {
 
-
+  const data = useContext(Context);
   const [changeContent, setChangeContent] = useState(false);
   const [editContent, setEditContent] = useState("");
   const params = useParams();
   const navigate = useNavigate();
-  const foundData = letters.find((letter)=>{
+  const foundData = data.letters.find((letter)=>{
     return letter.id == params.id;
   });
 
 
   const deleteBtnHandler=()=>{
     if(window.confirm('정말로 삭제하시겠습니까?')===true){
-      const deletedLetters = letters.filter((letter)=>{
+      const deletedLetters = data.letters.filter((letter)=>{
         return letter.id != foundData.id;
       });
       setLetters(deletedLetters);
@@ -132,7 +134,7 @@ function Detail({letters, setLetters, nickname, setNickname, letterContent, setL
             </StEditTextArea>
             <br/>
             <StEditBtn onClick={()=>{
-                navigate(-1);
+                navigate(`/`);
 
                 // Question ???????
 
@@ -143,7 +145,7 @@ function Detail({letters, setLetters, nickname, setNickname, letterContent, setL
 
       <div>
         <StDetailHomeBtn onClick={()=>{
-          navigate('/');
+          navigate(`/`);
         }}>Home </StDetailHomeBtn>
         <StDetailDiv>
         <StDetailH>{foundData.nickname}</StDetailH>

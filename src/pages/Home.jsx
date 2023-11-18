@@ -12,7 +12,7 @@ const StHomeDiv=styled.div`
   display: grid;
   justify-content: center;
 `
-function Home({letters, setLetters, nickname, setNickname, letterContent, setLetterContent}) {
+function Home({setLetters, setNickname, setLetterContent}) {
 
 
   const [btnMinji,setBtnMinji] = useState(true);
@@ -26,9 +26,9 @@ function Home({letters, setLetters, nickname, setNickname, letterContent, setLet
     <StHomeDiv>
         <Header setBtnMinji={setBtnMinji} setBtnHani={setBtnHani}
           setBtnDaniel={setBtnDaniel} setBtnHerin={setBtnHerin} setBtnHyein={setBtnHyein}/>
-        <AddForm letters={letters} setLetters={setLetters}nickname={nickname} setNickname={setNickname} letterContent={letterContent}
-         setLetterContent={setLetterContent}/>
-        <Letter letters={letters} btnMinji={btnMinji} btnHani={btnHani}
+        <AddForm setLetters={setLetters} setNickname={setNickname} setLetterContent={setLetterContent}/>
+         
+        <Letter btnMinji={btnMinji} btnHani={btnHani}
          btnDaniel={btnDaniel} btnHerin={btnHerin} btnHyein={btnHyein}></Letter>
          
     </StHomeDiv>

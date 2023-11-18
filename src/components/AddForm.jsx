@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import uuid from "react-uuid";
 import styled from 'styled-components';
 import backgroundImg from "img/rabbit.jpeg";
+import { useContext } from 'react';
+import { Context } from 'context/Context';
 
 const StDiv = styled.div`
   background:radial-gradient( transparent,10%, #FFFFD9),
@@ -56,8 +58,11 @@ const StSubmitBtn = styled.button`
   border:1px solid black;
   background-color:white;
 `
-function AddForm({nickname,setNickname,letterContent,setLetterContent,letters,setLetters}) 
+function AddForm({setNickname,setLetterContent,setLetters}) 
 {
+
+  const data = useContext(Context);
+
     const selected = useRef();
     selected.current = "민지";
     const handleSelect = (e)=>{
@@ -71,18 +76,18 @@ function AddForm({nickname,setNickname,letterContent,setLetterContent,letters,se
           e.preventDefault();
           const newLetter={
             id:uuid(),
-            nickname:nickname,
-            content:letterContent,
+            nickname:data.nickname,
+            content:data.letterContent,
             writedTo:selected.current
           }
-          setLetters([...letters,newLetter]);
+          setLetters([...data.letters,newLetter]);
           setNickname("");
           setLetterContent("");
           }}>
-            <StInput placeholder="닉네임을 입력해주세요!"value={nickname} onChange={(e)=>{
+            <StInput placeholder="닉네임을 입력해주세요!"value={data.nickname} onChange={(e)=>{
             setNickname(e.target.value);}}/>
             <br/>
-            <StTextArea placeholder="내용을 입력해주세요!" value={letterContent} onChange={(e)=>{
+            <StTextArea placeholder="내용을 입력해주세요!" value={data.letterContent} onChange={(e)=>{
             setLetterContent(e.target.value);}}>
             </StTextArea>
             <br/>

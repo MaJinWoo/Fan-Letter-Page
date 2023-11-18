@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useContext } from 'react';
+import { Context } from 'context/Context';
 
 const StDiv = styled.div`
     background-size: cover;
@@ -27,14 +29,15 @@ const StLink = styled(Link)`
   &:link{color:black;}
 `
 
-function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
+function Letter({btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
 
+    const data = useContext(Context);
 
   return (
     <StDiv>
         {
             btnMinji ?
-            letters.filter((letter)=>{
+            data.letters.filter((letter)=>{
                 return letter.writedTo === "민지"
             }).map((letter)=>{
                 return(
@@ -55,7 +58,7 @@ function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
         }
                 {
             btnHani ?
-            letters.filter((letter)=>{
+            data.letters.filter((letter)=>{
                 return letter.writedTo === "하니"
             }).map((letter)=>{
                 return(
@@ -64,7 +67,7 @@ function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
                     >
 
                     <StLetterDiv>
-                    <h2>{letter.nickname}</h2>
+                    <h2>닉네임 : {letter.nickname}</h2>
                     <br/>
                     <p>{letter.content}</p>
                     </StLetterDiv>
@@ -74,7 +77,7 @@ function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
         }
         {
             btnDaniel ?
-            letters.filter((letter)=>{
+            data.letters.filter((letter)=>{
                 return letter.writedTo === "다니엘"
             }).map((letter)=>{
                 return(
@@ -83,7 +86,7 @@ function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
                     >
 
                     <StLetterDiv>
-                    <h2>{letter.nickname}</h2>
+                    <h2>닉네임 : {letter.nickname}</h2>
                     <br/>
                     <p>{letter.content}</p>
                     </StLetterDiv>
@@ -93,7 +96,7 @@ function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
         }
         {
             btnHerin ?
-            letters.filter((letter)=>{
+            data.letters.filter((letter)=>{
                 return letter.writedTo === "해린"
             }).map((letter)=>{
                 return(
@@ -102,7 +105,7 @@ function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
                     >
 
                     <StLetterDiv>
-                    <h2>{letter.nickname}</h2>
+                    <h2>닉네임 : {letter.nickname}</h2>
                     <br/>
                     <p>{letter.content}</p>
                     </StLetterDiv>
@@ -112,7 +115,7 @@ function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
         }
         {
             btnHyein ?
-            letters.filter((letter)=>{
+            data.letters.filter((letter)=>{
                 return letter.writedTo === "혜인"
             }).map((letter)=>{
                 return(
@@ -121,7 +124,7 @@ function Letter({letters, btnMinji, btnHani, btnDaniel, btnHerin, btnHyein}) {
                     >
 
                     <StLetterDiv>
-                    <h2>{letter.nickname}</h2>
+                    <h2>닉네임 : {letter.nickname}</h2>
                     <br/>
                     <p>{letter.content}</p>
                     </StLetterDiv>
